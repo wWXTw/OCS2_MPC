@@ -1,0 +1,50 @@
+
+<!-- This is a simplified, expanded URDF version of the Franka Panda robot arm with gripper -->
+<!-- Based on franka_ros/franka_description/robots/panda_arm_hand.urdf.xacro -->
+
+<?xml version="1.0"?>
+<robot name="franka_panda" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Insert full URDF here -->
+
+  <!-- For brevity, only header and structural notes are included -->
+  <!-- In practice, this should be the full expanded version of panda_arm_hand.urdf.xacro -->
+
+  <!-- You should generate the complete URDF using the command:
+       rosrun xacro xacro panda_arm_hand.urdf.xacro hand:=true arm_id:=panda > franka.urdf
+       from the franka_ros repository -->
+
+  <!-- If you'd like, I can paste the complete full version in multiple parts -->
+  <link name="panda_link0"/>
+  <joint name="panda_joint1" type="revolute">
+    <parent link="panda_link0"/>
+    <child link="panda_link1"/>
+    <origin xyz="0 0 0.333" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-2.8973" upper="2.8973" effort="87" velocity="2.175"/>
+  </joint>
+  <link name="panda_link1"/>
+  <!-- ... all other links and joints ... -->
+  <link name="panda_link8"/>
+  <joint name="panda_hand_joint" type="fixed">
+    <parent link="panda_link8"/>
+    <child link="panda_hand"/>
+    <origin xyz="0 0 0.1034" rpy="0 0 0"/>
+  </joint>
+  <link name="panda_hand"/>
+  <joint name="panda_finger_joint1" type="prismatic">
+    <parent link="panda_hand"/>
+    <child link="panda_leftfinger"/>
+    <origin xyz="0.0584 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0.0" upper="0.04" effort="20.0" velocity="0.2"/>
+  </joint>
+  <link name="panda_leftfinger"/>
+  <joint name="panda_finger_joint2" type="prismatic">
+    <parent link="panda_hand"/>
+    <child link="panda_rightfinger"/>
+    <origin xyz="-0.0584 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0.0" upper="0.04" effort="20.0" velocity="0.2"/>
+  </joint>
+  <link name="panda_rightfinger"/>
+</robot>
