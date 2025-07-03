@@ -6,3 +6,4 @@ ocs2_robotic_assets/
 pinocchio/
 pybind11_catkin/
 raisimLib/
+roscpp/
